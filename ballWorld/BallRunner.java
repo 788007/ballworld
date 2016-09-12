@@ -1,30 +1,41 @@
 
 /**
  * @Laurel Woods 
- * @activity 1
+ * @activity 2
  */
 public class BallRunner
 {
-    BallWorld ballWorld;
-    TGPoint entrancePoint;
-    BallBot[] ballBotArray;
+    private BallWorld ballWorld;
+    private TGPoint entrancePoint;
+    private BallBot[] ballBotArray;
+    private ballBotArray;
     
     public BallRunner(BallWorld ballWorld, TGPoint entrancePoint, int ballBotArrayLength){
-        
-        BallBot[] ballBotArray = new BallBot[ballBotArrayLength - 1];
+        ballWorld = ballWorld;
+        entrancePoint = entrancePoint;
+        ballBotArray = new BallBot[ballBotArrayLength];
     }
-    
     public int findFreeBallBotIndex() {
         for (int i = 0; i < ballBotArray.length; i ++) {
             if (ballBotArray[i] == null) {
                 return i;
             } 
-            
         }
         return ballBotArray.length;
     }
-
-    
+    public static void run(){
+        BallWorld ballWorld = new BallWorld(300, 300);
+        TGPoint entrancePoint = new TGPoint (0, 0);
+        int ballBotArrayLength = 10;
+        BallRunner ball = new BallRunner(ballWorld, entrancePoint, ballBotArrayLength);
+        while (1 > 0) {
+            int freeBallBotIndex = ball.findFreeBallBotIndex();
+            if (freeBallBotIndex < ballBotArrayLength) {
+                BallBot ballBot = new BallBot(ballWorld, entrancePoint, (int)(Math.random()*360),10);
+                ballBotArray[freeBallBotIndex] = ballBot;
+            }
+        }
+    }
     public static void activity1() {
         BallWorld ballWorld = new BallWorld(500, 500);
         TGPoint startPoint = new TGPoint (0, 0);
